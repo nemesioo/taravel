@@ -40,7 +40,7 @@ export default function SignUp() {
       <Spinner visible={isLoading} />
       <View className="flex-1 bg-white">
         <View className="mb-10 mt-10 flex-1 content-center justify-center bg-white pl-5">
-          <Text className="text-bold text-4xl">Creat your Tradr account</Text>
+          <Text className="text-bold text-4xl">Creat your Taravel account</Text>
           <Text className="text-2xl text-slate-500">Let's Sign you up.</Text>
           <View className="mt-10 items-center">
             <Formik

@@ -14,7 +14,7 @@ interface AuthStore {
   verifyCode: (code: string, useSignUpHook: any) => void;
   fetchUserData: () => void;
   login: (idenfier: string, password: string, useSignInHook: any) => void;
-  signOut: (useSignOutHook: any) => void;
+  logout: (useAuthHook: any) => void;
   resetPassword: (email: string, useSignUpHook: any) => void;
   resetPasswordVerification: (
     code: string,
@@ -105,8 +105,8 @@ export const useAuthStore = create<AuthStore>(
         set({ isLoading: false });
       }
     },
-    signOut: async (useSignOutHook) => {
-      const { signOut } = useSignOutHook;
+    logout: async (useAuthHook) => {
+      const { signOut } = useAuthHook;
 
       set({ isLoading: true });
       await new Promise((resolve) => {

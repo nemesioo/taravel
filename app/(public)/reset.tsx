@@ -107,15 +107,6 @@ export default function Reset() {
                     </>
                   )}
 
-                  {/* <View className="flex-row">
-                    <Text className="text-lg">Already have an account ? </Text>
-                    <Link href={"/login"} asChild>
-                      <Pressable className="text-">
-                        <Text className="text-lg font-bold">Login</Text>
-                      </Pressable>
-                    </Link>
-                  </View> */}
-
                   <Button
                     onPress={() => handleSubmit()}
                     disabled={isLoading}

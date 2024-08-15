@@ -34,7 +34,7 @@ export default function Login() {
       <Spinner visible={isLoading} textContent="" />
       <View className="flex-1 bg-white">
         <View className="mb-10 mt-10 flex-1 content-center justify-center bg-white pl-5">
-          <Text className="text-bold text-5xl">Welcome to Tradr</Text>
+          <Text className="text-bold text-5xl">Welcome to Taravel</Text>
           <Text className="text-2xl text-slate-500">Let's Sign you in.</Text>
           <View className="mt-10 items-center">
             <Formik
