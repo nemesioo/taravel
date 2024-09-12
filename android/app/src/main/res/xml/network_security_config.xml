@@ -2,8 +2,8 @@
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">snaphotelapi.com</domain>
-        <trust-anchor>
+        <trust-anchors>
             <certificates src="@raw/my_ca"/>
-        </trust-anchor>
+        </trust-anchors>
     </domain-config>
 </network-security-config>
