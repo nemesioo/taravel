@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">snaphotelapi.com</domain>
+        <trust-anchor>
+            <certificates src="@raw/my_ca"/>
+        </trust-anchor>
+    </domain-config>
+</network-security-config>

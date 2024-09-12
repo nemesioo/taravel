@@ -6,21 +6,27 @@ import {
   FlatList,
   Animated,
 } from "react-native";
-import { Stack } from "expo-router";
+import { Stack, useRouter, Link } from "expo-router";
 import Spinner from "react-native-loading-spinner-overlay";
 import { Button, ButtonText } from "@/components/ui/button";
 import { useAuth } from "@clerk/clerk-expo";
 import { useAuthStore } from "@/store/AuthStore";
 import { Icon } from "@/components/ui/icon";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { useEffect, useRef, useState } from "react";
 import ShowcaseCard from "@/components/ShowcaseCard";
 import Listing from "@/components/Listing";
 import { Input, InputField } from "@/components/ui/input";
+import { useHotelStore } from "@/store/HotelStore";
+import HomeHeader from "@/components/HomeHeader";
+import { HotelsQueryType } from "@/api/enums";
 
 const Home = () => {
   const { logout } = useAuthStore();
+
   const useAuthHook = useAuth();
+
+  const { searchQuery, isLoading } = useHotelStore();
 
   const scrollY = useRef(new Animated.Value(0)).current;
 
@@ -57,29 +63,41 @@ const Home = () => {
 
   return (
     <>
-      <Stack.Screen options={{ headerTitle: "" }} />
-
+      {/* <Stack.Screen
+        options={{
+          headerTitle: () => <HomeHeader />,
+          // headerStyle: {
+          //   backgroundColor: "grey",
+          // },
+        }}
+      /> */}
+      <Spinner visible={isLoading} textContent="" />
+      <HomeHeader />
       <View className="flex-1 bg-white">
-        <Animated.View
-          // className={`bg-slate-400`}
+        {/* <Animated.View
           style={{ opacity, height: headerHeight }}
-        >
-          <View className="mb-3 ml-2 mt-3 flex-1 flex-row items-center justify-around">
+        > */}
+        {/* <View className="mb-3 ml-2 mt-3 flex-1 flex-row items-center justify-center">
             <Input className="h-full w-4/5 rounded-full">
               <InputField></InputField>
             </Input>
-            {/* <Text>Chat</Text>
-             */}
-            <Ionicons
-              onPress={() => logout(useAuthHook)}
-              name="chatbubble"
-              size={24}
-              color="black"
-            />
-            <Ionicons name="cart-sharp" size={24} color="black" />
+            <Link href="/profile" asChild>
+              <AntDesign size={24} name="user" color="black" />
+            </Link>
+          </View> */}
+        {/* </Animated.View> */}
+        {searchQuery !== "" && (
+          <View>
+            <Listing searchQuery={searchQuery} />
           </View>
-        </Animated.View>
-        <Listing scrollY={scrollY} />
+        )}
+
+        {searchQuery === "" && (
+          <View>
+            <Listing hotelsQueryType={HotelsQueryType.TopRated} />
+            <Listing hotelsQueryType={HotelsQueryType.MostPopular} />
+          </View>
+        )}
       </View>
     </>
   );

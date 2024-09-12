@@ -28,6 +28,7 @@ interface CustomInputProps extends TextInputProps {
   helperText: string;
   label: string;
   secureTextEntry: boolean;
+  labelFont?: string;
 }
 
 const CustomComponent: FC<CustomInputProps> = (props: CustomInputProps) => {
@@ -37,6 +38,7 @@ const CustomComponent: FC<CustomInputProps> = (props: CustomInputProps) => {
     helperText,
     label,
     secureTextEntry,
+    labelFont,
     ...inputProps
   } = props;
 
@@ -52,7 +54,9 @@ const CustomComponent: FC<CustomInputProps> = (props: CustomInputProps) => {
   return (
     <FormControl className="h-auto" isInvalid={hasError}>
       <FormControlLabel className="mb-1">
-        <FormControlLabelText className="text-bold text-2xl">
+        <FormControlLabelText
+          className={`text-bold ${labelFont ?? "text-2xl"}`}
+        >
           {label}
         </FormControlLabelText>
       </FormControlLabel>
@@ -60,6 +64,9 @@ const CustomComponent: FC<CustomInputProps> = (props: CustomInputProps) => {
         <InputField
           value={value}
           autoCapitalize="none"
+          onPress={() => {
+            console.log("PRESS");
+          }}
           onChangeText={(text) => {
             onChange(name)(text);
           }}

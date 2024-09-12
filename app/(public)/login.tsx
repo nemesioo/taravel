@@ -8,7 +8,7 @@ import { Link } from "expo-router";
 import { useSignIn } from "@clerk/clerk-expo";
 import Spinner from "react-native-loading-spinner-overlay";
 import { useAuthStore } from "@/store/AuthStore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const loginValidationSchema = yup.object().shape({
   identifier: yup
@@ -26,8 +26,12 @@ const loginValidationSchema = yup.object().shape({
 });
 
 export default function Login() {
-  const { isLoading, login } = useAuthStore();
+  const { isLoading, login, reset } = useAuthStore();
   const useSignInHook = useSignIn();
+
+  useEffect(() => {
+    reset();
+  }, []);
 
   return (
     <>

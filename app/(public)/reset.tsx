@@ -9,6 +9,7 @@ import { useSignIn } from "@clerk/clerk-expo";
 import { useAuthStore } from "@/store/AuthStore";
 import OtpInput from "@/components/OtpInput";
 import Spinner from "react-native-loading-spinner-overlay";
+import { useEffect } from "react";
 
 const emailPasswordValidationSchema = yup.object().shape({
   email: yup
@@ -36,8 +37,13 @@ export default function Reset() {
     isLoading,
     resetPassword,
     resetPasswordVerification,
+    reset,
   } = useAuthStore();
   const useSignInHook = useSignIn();
+
+  useEffect(() => {
+    reset();
+  }, []);
 
   return (
     <>

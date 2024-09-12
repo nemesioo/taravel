@@ -4,6 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface AuthStore {
   isLoading: boolean;
+  reset: () => void;
   signUp: (
     email: string,
     password: string,
@@ -27,6 +28,9 @@ export const useAuthStore = create<AuthStore>(
   //   persist(
   (set, get) => ({
     isLoading: false,
+    reset: () => {
+      set({ isLoading: false, pendingVerification: false });
+    },
     pendingVerification: false,
     signUp: async (email, password, username, useSignUpHook) => {
       const { isLoaded, signUp } = useSignUpHook;
